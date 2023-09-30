@@ -29,7 +29,7 @@ Route::get('categories/{categorie}', [App\Http\Controllers\CategorieController::
 Route::post('categories/{categorie}', [App\Http\Controllers\CategorieController::class,'destroy'])->name('categories.destroy');
 
 //Route::resource('categories', App\Http\Controllers\CategorieController::class);
-Route::get('/categories/create', [App\Http\Controllers\CategorieController::class, 'create'])->name('categories.create');
+Route::get('/categories_create', [App\Http\Controllers\CategorieController::class, 'create'])->name('categories.create');
 Route::post('/categories', [App\Http\Controllers\CategorieController::class, 'store'])->name('categories.store');
 
 Route::get('/categories', [App\Http\Controllers\CategorieController::class, 'index'])->name('categories.index');
