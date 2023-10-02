@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Commande extends Model
+class Contact extends Model
 {
     use HasFactory;
-    protected $table = 'Commande'; 
+
+    protected $table = 'Contact'; 
     protected $primaryKey = 'id'; 
-    protected $fillable = ['total'];
+    protected $fillable = ['message','obj_message','date']; 
 }

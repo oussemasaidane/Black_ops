@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categorie;
+use App\Models\Contact;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
@@ -17,7 +18,7 @@ class CategorieController extends Controller
 
     public function create()
     {
-        return view('back.categories.create');
+        return view('back.contacts.create');
     }
 
     public function store(Request $request)
@@ -26,7 +27,7 @@ class CategorieController extends Controller
             'nom' => 'required',
         ]);
 
-        Categorie::create($request->all());
+        Contact::create($request->all());
 
         return redirect()->route('categories.index')
             ->with('success', 'Categorie created successfully.');

@@ -13,9 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('commande', function (Blueprint $table) {
+        Schema::create('contact', function (Blueprint $table) {
             $table->id();
-            $table->float('total');
+           
+            $table->string('message');
+            $table->string('obj_message');
+            $table->date('date');
+
+           
             $table->timestamps();
         });
     }
@@ -27,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('commande');
+        Schema::dropIfExists('contact');
     }
 };

@@ -19,6 +19,9 @@ Route::get('/', function () {
 Route::get('/categorie', function () {
     return view('back.Categorie');
 })->name('categorie');
+
+
+
 Route::get('admin', [App\Http\Controllers\AdminController::class, 'back'])->name('admin');
 Route::get('user', [App\Http\Controllers\AdminController::class, 'front']);
 
@@ -29,6 +32,8 @@ Route::get('categories/{categorie}', [App\Http\Controllers\CategorieController::
 Route::post('categories/{categorie}', [App\Http\Controllers\CategorieController::class,'destroy'])->name('categories.destroy');
 
 //Route::resource('categories', App\Http\Controllers\CategorieController::class);
+Route::resource('contacts', App\Http\Controllers\ContactController::class);
+
 Route::get('/categories_create', [App\Http\Controllers\CategorieController::class, 'create'])->name('categories.create');
 Route::post('/categories', [App\Http\Controllers\CategorieController::class, 'store'])->name('categories.store');
 
@@ -37,17 +42,5 @@ Route::get('/categories', [App\Http\Controllers\CategorieController::class, 'ind
 
 Route::get('/categories/{categorie}/edit', [App\Http\Controllers\CategorieController::class, 'edit'])->name('categories.edit');
 Route::put('/categories/{categorie}', [App\Http\Controllers\CategorieController::class, 'update'])->name('categories.update');
-
-Route::get('/commandes', [App\Http\Controllers\CommandeController::class, 'index'])->name('commande.index');
-Route::get('commandes/{commande}', [App\Http\Controllers\CommandeController::class,'show'])->name('commande.show');
-Route::post('commandes/{commande}', [App\Http\Controllers\CommandeController::class,'destroy'])->name('commande.destroy');
-
-//Route::resource('categories', App\Http\Controllers\CategorieController::class);
-Route::get('/commande_create', [App\Http\Controllers\CommandeController::class, 'create'])->name('commande.create');
-Route::post('/commandes_store', [App\Http\Controllers\CommandeController::class, 'store'])->name('commande.store');
-
-
-Route::get('/commandes/{commande}/edit', [App\Http\Controllers\CommandeController::class, 'edit'])->name('commande.edit');
-Route::put('/commandes/{commande}', [App\Http\Controllers\CommandeController::class, 'update'])->name('commande.update');
 
 
