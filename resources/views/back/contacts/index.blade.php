@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h2>Contacts</h2>
+        <h2>Contacts : {{count($contacts)}}</h2>
         <a href="{{ route('contacts.create') }}" class="btn btn-success">Create New Contact</a>
         <table class="table">
             <thead>
@@ -10,7 +10,7 @@
                     <th>ID</th>
                     <th>Message</th>
                     <th>Objet</th>
-                    <th>Date</th>
+                    <th>Created at</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -20,7 +20,7 @@
                         <td>{{ $contact->id }}</td>
                         <td>{{ $contact->message }}</td>
                         <td>{{ $contact->obj_message }}</td>
-                        <td>{{ $contact->date }}</td>
+                        <td>{{ $contact->created_at }}</td>
 
                         <td>
                             <a href="{{ route('contacts.show', $contact->id) }}" class="btn btn-info">View</a>

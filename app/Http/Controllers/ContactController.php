@@ -70,7 +70,7 @@ class ContactController extends Controller
     {
         $request->validate([
             'message' => 'required',
-            'obj_message' => 'required',
+            'created_at' => 'required',
             'date' => 'required',
         ]);
 

@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Contact;
+use Carbon\Carbon;
 class AdminController extends Controller
 {
 
@@ -13,7 +14,11 @@ class AdminController extends Controller
      */
     public function back()
     {
-        return view('back.dashboard');
+        $contacts = Contact::all();
+        $today = Carbon::today();
+        $todayContacts = Contact::whereDate('created_at', $today)->get();
+
+        return view('back.dashboard', compact('contacts','todayContacts'));
     }
 
     public function front()

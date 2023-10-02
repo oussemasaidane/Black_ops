@@ -13,7 +13,7 @@
                 <label for="obj_message">Ojbet:</label>
                 <input type="text" style=" 
                 border: 1px solid gray; width:50%" class="form-control" id="obj_message" name="obj_message" value="{{ $contact->obj_message }}" required>
-                <label for="obj_message">Date:</label>
+                <label for="date">Date:</label>
                 <input type="date" style=" 
                 border: 1px solid gray; width:50%" class="form-control" id="date" name="date" value="{{ $contact->date }}" required>
             </div>
