@@ -9,7 +9,7 @@
             <div class="form-group">
                 <label for="nom">:</label>
                 <input type="number" style=" 
-                border: 1px solid gray; width:50%" class="form-control" id="nom" name="total" value="{{ $commande->total }}" required>
+                border: 1px solid gray; width:50%" class="form-control" id="nom" name="total" value="{{ $commande->total }}" step="0.01" required>
             </div>
             <button type="submit" class="btn btn-primary mt-5">Update</button>
         </form>

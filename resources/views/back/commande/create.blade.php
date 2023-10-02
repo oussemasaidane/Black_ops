@@ -8,7 +8,7 @@
             <div class="form-group">
                 <label for="nom">total:</label>
                 <input type="number" class="form-control" style=" 
-                border: 1px solid gray; width:50%" id="total" name="total" required>
+                border: 1px solid gray; width:50%" id="total" name="total" step="0.01" required>
             </div>
             <button type="submit" class="btn btn-primary mt-5">Create</button>
         </form>
