@@ -49,11 +49,7 @@ class CategorieController extends Controller
             ->with('success', 'Categorie updated successfully');
     }
 
-    public function show(Categorie $categorie)
-    {
-        var_dump($categorie['id']);
-        return view('back.categories.show', compact('categorie'));
-    }
+
 
     public function destroy(Categorie $categorie)
     {

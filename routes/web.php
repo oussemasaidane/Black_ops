@@ -38,16 +38,8 @@ Route::get('/categories', [App\Http\Controllers\CategorieController::class, 'ind
 Route::get('/categories/{categorie}/edit', [App\Http\Controllers\CategorieController::class, 'edit'])->name('categories.edit');
 Route::put('/categories/{categorie}', [App\Http\Controllers\CategorieController::class, 'update'])->name('categories.update');
 
-Route::get('/commandes', [App\Http\Controllers\CommandeController::class, 'index'])->name('commande.index');
-Route::get('commandes/{commande}', [App\Http\Controllers\CommandeController::class,'show'])->name('commande.show');
-Route::post('commandes/{commande}', [App\Http\Controllers\CommandeController::class,'destroy'])->name('commande.destroy');
 
-//Route::resource('categories', App\Http\Controllers\CategorieController::class);
-Route::get('/commande_create', [App\Http\Controllers\CommandeController::class, 'create'])->name('commande.create');
-Route::post('/commandes_store', [App\Http\Controllers\CommandeController::class, 'store'])->name('commande.store');
+/// Route for Ticket 
 
-
-Route::get('/commandes/{commande}/edit', [App\Http\Controllers\CommandeController::class, 'edit'])->name('commande.edit');
-Route::put('/commandes/{commande}', [App\Http\Controllers\CommandeController::class, 'update'])->name('commande.update');
-
-
+///Route::get('tickets', [TicketController::class, 'index'])->name('tickets.index');
+Route::resource('tickets', App\Http\Controllers\TicketsController::class);
