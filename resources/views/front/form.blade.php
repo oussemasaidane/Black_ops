@@ -1,97 +1,83 @@
 
 @extends('welcome')
 @section('content')
-<div class="container ">
+  <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+    
+            <img style=" background-size: cover;"src="{{ Vite::asset('resources/assets/img/logo-ct.png') }}" class="img-fluid" width="100px" alt="main_logo">
+    
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    
+            <ul class="navbar-nav ms-auto mx-auto">
+              @foreach ($categories as $categorie)
+                  @if ($sousCategories->where('categorie_id', $categorie->id)->count() > 0)
+                      <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" id="categorieDropdown{{ $categorie->id }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              {{ $categorie->nom }}
+                          </a>
+                          <ul class="dropdown-menu" aria-labelledby="categorieDropdown{{ $categorie->id }}">
+                              @foreach ($sousCategories->where('categorie_id', $categorie->id) as $sousCategorie)
+                                  <li><a class="dropdown-item" href="#">{{ $sousCategorie->nom }}</a></li>
+                              @endforeach
+                          </ul>
+                      </li>
+                  @else
+                      <li class="nav-item">
+                          <a class="nav-link" href="#">{{ $categorie->nom }}</a>
+                      </li>
+                  @endif
+              @endforeach
 
-{{--<div class="col-lg-6 col-md-12">
-    <div class="card">
-        <div class="card-header card-header-warning">
-            <h4 class="card-title">Employees Stats</h4>
-            <p class="card-category">New employees on 15th September, 2016</p>
-        </div>
-        <div class="card-body table-responsive">
-            <table class="table table-hover">
-                <thead class="text-warning">
-                <tr><th>ID</th>
-                    <th>Name</th>
-                    <th>Salary</th>
-                    <th>Country</th>
-                </tr></thead>
-                <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Dakota Rice</td>
-                    <td>$36,738</td>
-                    <td>Niger</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Minerva Hooper</td>
-                    <td>$23,789</td>
-                    <td>Curaçao</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Sage Rodriguez</td>
-                    <td>$56,142</td>
-                    <td>Netherlands</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Philip Chaney</td>
-                    <td>$38,735</td>
-                    <td>Korea, South</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>--}}
-
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">
-
-        <img style=" background-size: cover;"src="{{ Vite::asset('resources/assets/img/logo-ct.png') }}" class="img-fluid" width="100px" alt="main_logo">
-
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-        <ul class="navbar-nav  ms-auto mx-auto">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Moyen de transport</a>
-          </li>
+              @if (Auth::check()) 
+              <li class="nav-item">
+                  <a class="nav-link" href="/contact">Contactez-nous</a>
+              </li>
+          @endif
+          </ul>
           
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Tarifs
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-          </li>
+            <form class="d-flex mt-3 me-3">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-primary" type="submit">Search</button>
+            </form>
+            @Auth
+            <div class="dropdown">
+              <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="userDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  {{ Auth::user()->name }}
+              </a>
+              <div class="dropdown-menu" aria-labelledby="userDropdown">
+                  <a class="dropdown-item" href="{{ route('profile.edit') }}">Profile</a>
+                  <form method="POST" action="{{ route('logout') }}">
+                      @csrf
+                      <button class="dropdown-item" type="submit">Log Out</button>
+                  </form>
+              </div>
+          </div>
+          
+          @else
+          <div>
+           <a href="/login" ><button class="btn btn-primary" type="submit">Connexion</button></a>
+        </div>
+        @endauth
 
-          <li class="nav-item">
-            <a class="nav-link" href="#">A propos de nous</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Contact-nous</a>
-          </li>
-        </ul>
-        <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-primary" type="submit">Search</button>
-        </form>
+          </div>
+        </div>
+      </nav>
+    
+
+
+
+      @if (session('error'))
+      <div class="alert alert-danger">
+          {{ session('error') }}
       </div>
-    </div>
-  </nav>
+  @endif
+  
 
 <div class="row mt-5">
 <div class="col-lg-6">
@@ -108,22 +94,177 @@ box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); " >
 
 
 </div>
-<h1 class="text-center fw-bold mt-5">Connexion </h1>
-<form class="mt-5">
-    <div class="form-group">
-        <label for="exampleInputEmail1">Email address</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+
+
+
+
+<div class="row mt-5">
+  <div class="col-md-4 mt-4">
+      <div class="card text-center" style="box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25); border: hidden;">
+          <div class="card-body">
+            <i class="fa fa-users fa-4x text-primary"></i>
+
+              <h5 class="card-title mt-4">Recrutement</h5>
+              <p class="card-text">Description ou contenu lié au recrutement.</p>
+          </div>
+      </div>
+  </div>
+  <div class="col-md-4 mt-4">
+      <div class="card text-center" style="box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25); border: hidden;">
+          <div class="card-body">
+            <i class="fa fa-question-circle fa-4x text-primary"></i>
+
+              <h5 class="card-title mt-4">Foire aux questions</h5>
+              <p class="card-text">Description ou contenu lié aux FAQ.</p>
+          </div>
+      </div>
+  </div>
+  <div class="col-md-4 mt-4">
+      <div class="card text-center" style="box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25); border: hidden;">
+          <div class="card-body">
+            <i class="fa fa-file-alt fa-4x text-primary"></i>
+
+              <h5 class="card-title mt-4">Procès verbaux</h5>
+              <p class="card-text">Description lié aux procès verbaux.</p>
+          </div>
+      </div>
+  </div>
+  <div class="col-md-4 mt-4">
+      <div class="card text-center" style="box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25); border: hidden;">
+          <div class="card-body">
+            <i class="fa fa-map fa-4x text-primary "></i>
+
+              <h5 class="card-title mt-4">Transport à la carte</h5>
+              <p class="card-text">Description lié au transport sur mesure.</p>
+          </div>
+      </div>
+  </div>
+  <div class="col-md-4 mt-4">
+      <div class="card text-center" style="box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25); border: hidden;">
+          <div class="card-body">
+            <i class="fa fa-lock fa-4x text-primary"></i>
+
+              <h5 class="card-title mt-4">Protection des données personnelles</h5>
+              <p class="card-text">Description ou contenu lié à la protection des données.</p>
+          </div>
+      </div>
+  </div>
+
+  <div class="col-md-4 mt-4" >
+    <div class="card text-center" style="box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25); border: hidden;">
+        <div class="card-body">
+          <i class="fa fa-cogs fa-4x text-primary"></i>
+
+            <h5 class="card-title mt-4">Service</h5>
+            <p class="card-text">Description ou contenu lié au service.</p>
+        </div>
     </div>
-    <div class="form-group">
-        <label for="exampleInputPassword1">Password</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-    </div>
-    <div class="form-group form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
 </div>
+</div>
+
+
+
+
+
+
+<div class="row mt-5">
+  <div class="col-lg-6">
+      <h1 class="text-center mt-5">   # خلّــص تســكرتــك</h1>
+  <h4 class="mt-5" style="text-align: justify">
+  
+   <br>
+    est le slogan de la campagne de sensibilisation organisée par la TransBetter en collaboration avec la Radio IFM portant sur le thème de la Resquille
+  </h4>  </div>
+  <div class="col-lg-6">
+  
+  <img src="{{ Vite::asset('resources/assets/img/media_temp_1457446227.jpg') }}" style=" border-radius: 10%; 
+  overflow: hidden; /* Cache les coins de l'image */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); " class="img-fluid mt-5" >
+  </div>
+  
+  
+  </div>
+
+
+
+
+  <div class="row mt-5">
+
+
+
+    <div class="col-lg-6">
+    
+      <img src="{{ Vite::asset('resources/assets/img/media_temp_1460984985.jpg') }}" style=" border-radius: 10%; 
+      overflow: hidden; /* Cache les coins de l'image */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); " class="img-fluid mt-5" >
+      </div>
+
+    <div class="col-lg-6">
+
+   
+
+        <h1 class="text-center mt-5">     #...Rani Fi khidimtek !!!!<br>
+          #...رانــي في خدمتك !!!</h1>
+    <h4 class="mt-5" style="text-align: justify">
+    
+     <br>
+     est le slogan de la campagne de sensibilisation organisée par la TranBetter en collaboration avec la Radio IFM portant sur les thèmes d'agression et de vandalisme
+    </h4>
+    </div>
+
+    
+    
+    </div>
+
+   
+
+
+
+    <div class="row mt-5">
+      <div class="col-lg-6">
+          <h1 class="text-center mt-5">    #...Rani Fi khidimtek !!!! <br>
+            #...رانــي في خدمتك !!!</h1>
+      <h4 class="mt-5" style="text-align: justify">
+      
+       <br>
+       est le slogan de la campagne de sensibilisation organisée par la TransBetter en collaboration avec la Radio IFM portant sur les thèmes d'agression et de vandalisme
+      
+      </h4></div>
+      <div class="col-lg-6">
+      
+      <img src="{{ Vite::asset('resources/assets/img/media_temp_1461053907.jpg') }}" style=" border-radius: 10%; 
+      overflow: hidden; /* Cache les coins de l'image */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); " class="img-fluid mt-5" >
+      </div>
+      
+      
+      </div>
+
+
+
+
+      <footer class="footer mt-5 ">
+        <div class="container-fluid">
+            <div class="row align-items-center justify-content-lg-between">
+                <div class="col-lg-6 mb-lg-0 mb-4">
+                    <div class="copyright text-center text-sm text-muted text-lg-start">
+                        © <script>
+                            document.write(new Date().getFullYear())
+                        </script>,
+                        made with <i class="fa fa-heart"></i> by
+                        <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">TransBetter Tim</a>
+                        for a better web.
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </footer>
+
+</div>
+
+
+
+
+
 @endsection
