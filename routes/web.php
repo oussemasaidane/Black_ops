@@ -2,7 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\MoyenController;
+use App\Http\Controllers\ImageController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -64,3 +65,6 @@ Route::put('/categories/{categorie}', [App\Http\Controllers\CategorieController:
 Route::resource('sous_categories', App\Http\Controllers\SousCategorieController::class)->middleware(['auth', 'admin']);
 
 require __DIR__.'/auth.php';
+Route::resource("/moyenTransport", MoyenController::class)->middleware(['auth', 'admin']);
+
+Route::resource("/imageMoyen", ImageController::class)->middleware(['auth', 'admin']);
