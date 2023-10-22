@@ -41,18 +41,23 @@ class SousCategorieController extends Controller
      */
     public function store(Request $request)
     {
+        $messages = [
+            'nom.required' => 'Le champ nom est obligatoire.',
+            'nom.max' => 'Le champ nom ne peut pas dépasser :max caractères.',
+            'categorie_id.required' => 'Le champ catégorie est obligatoire.',
+            'categorie_id.exists' => "La catégorie sélectionnée n'est pas valide.",
+        ];
+    
         $request->validate([
-            'nom' => 'required|max:100',
+            'nom' => 'required|max:20',
             'categorie_id' => 'required|exists:categories,id',
-
-        ]);
-
+        ], $messages);
+    
         SousCategorie::create([
             'nom' => $request->input('nom'),
             'categorie_id' => $request->input('categorie_id'), 
-
         ]);
-
+    
         return redirect()->route('sous_categories.index')->with('success', 'Sous-catégorie créée avec succès');
     }
 

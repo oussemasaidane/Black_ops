@@ -33,7 +33,11 @@
                     <td> {{ $sousCategorie->id }}</td>
 
                     <td>{{ $sousCategorie->nom }}</td>
+
+                    @if (isset($sousCategorie->categorie) && $sousCategorie->categorie->nom != null)
                     <td>{{ $sousCategorie->categorie->nom }}</td>
+                @endif
+                
                     <td>
                         <a href="{{ route('sous_categories.show', $sousCategorie->id) }}" class="btn btn-info">Voir</a>
                         <a href="{{ route('sous_categories.edit', $sousCategorie->id) }}"  class="btn btn-warning">Modifier</a>

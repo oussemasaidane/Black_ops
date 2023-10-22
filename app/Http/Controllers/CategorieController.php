@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categorie;
+use App\Models\SousCategorie;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
@@ -54,6 +56,13 @@ class CategorieController extends Controller
 
     public function destroy(Categorie $categorie)
     {
+        $sousCategories = SousCategorie::where('categorie_id',$categorie->id)->get();
+
+        if ($sousCategories->isNotEmpty()) {
+            $sousCategories->each(function ($sousCategorie) {
+                $sousCategorie->delete();
+            });
+        }
         $categorie->delete();
 
         Session::flash('success', 'Categorie  mise à jour avec succès');

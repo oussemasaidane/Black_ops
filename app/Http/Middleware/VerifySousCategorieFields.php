@@ -19,7 +19,7 @@ class VerifySousCategorieFields
       
 
         if (empty($request->input('nom')) ) {
-            return redirect()->back()->with('error', 'Les champs "nom" et "categorie" sont obligatoires.');
+            return redirect()->back()->with('error', 'Les champs "nom" sont obligatoires.');
         }
 
         if (strlen($request->input('nom')) > 100) {
