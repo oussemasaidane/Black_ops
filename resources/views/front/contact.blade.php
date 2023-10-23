@@ -53,7 +53,6 @@
           
           @else
           <div>
-            
            <a href="/login" ><button class="btn btn-primary" type="submit">Connexion</button></a>
         </div>
         @endauth
@@ -65,15 +64,16 @@
 
 <div class="row">
 <div class="col-lg-6">
-    <h1 class="mt-5">Contactez-nous</h1>
-    <form class="mt-5">
+    <h1 class="mt-5" >Contactez-nous</h1>
+    <form class="mt-5" action="{{ route('contact.store') }}" method="POST">
+      @csrf
         <div class="form-group">
-            <label for="objet" class="mt-5">Objet :</label>
-            <input type="text" class="form-control" id="objet" name="objet" placeholder="Objet du message">
+            <label for="obj_message" class="mt-5">Objet :</label>
+            <input type="text" class="form-control" id="obj_message" name="obj_message" required placeholder="Objet du message">
         </div>
         <div class="form-group mt-5">
             <label for="message">Message :</label>
-            <textarea class="form-control" id="message" name="message" rows="4" placeholder="Votre message"></textarea>
+            <textarea class="form-control" id="message" name="message" required rows="4" placeholder="Votre message"></textarea>
         </div>
         <button type="submit" class="btn btn-primary mt-5">Envoyer</button>
     </form>

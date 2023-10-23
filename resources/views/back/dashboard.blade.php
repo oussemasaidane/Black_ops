@@ -118,8 +118,9 @@ th {
         <div class="card" style="background: linear-gradient(-20deg, #bbd5ef 60%, white 65%); height: 160px; box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);border: hidden">
             <div class="card-body" >
                 <h5 class="card-title mb-3">Contact</h5>
-                <h1 class="card-text text-end mt-5 me-5">5</h1>
+                <h1 class="card-text text-end mt-5 me-5">{{count($contacts)}}</h1>
             </div>
+            
         </div>
     </div>
     <div class="col-lg-3">

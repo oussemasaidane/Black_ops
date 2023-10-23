@@ -66,7 +66,6 @@ class Kernel extends HttpKernel
         'verify_souscategorie' => \App\Http\Middleware\VerifySousCategorieFields::class,
         'admin'=> \App\Http\Middleware\Admin::class,
         'user'=> \App\Http\Middleware\User::class,
-        'validate.image.input' => \App\Http\Middleware\ValidateImageInput::class,
-        'validate.moyen.input' => \App\Http\Middleware\ValidateMoyenInput::class,
+
     ];
 }

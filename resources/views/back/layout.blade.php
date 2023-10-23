@@ -78,9 +78,9 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-white" href="/moyenTransport">
+            <a class="nav-link text-white " href="../pages/billing.html">
                 <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                    <i class="material-icons opacity-10">table_view</i>
+                    <i class="fas fa-car"></i>
                 </div>
                 <span class="nav-link-text ms-1">Moyen de transport</span>
             </a>
@@ -143,7 +143,7 @@
 
 
         <li class="nav-item">
-            <a class="nav-link text-white " href="../pages/notifications.html">
+            <a class="nav-link text-white {{ request()->routeIs('contacts.index') ? 'active bg-gradient-primary' : '' }}" href="{{ route('contacts.index') }}">
                 <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                     <i class="fas fa-envelope"></i>
                 </div>

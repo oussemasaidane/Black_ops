@@ -2,8 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\MoyenController;
-use App\Http\Controllers\ImageController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,9 +23,10 @@ use App\Http\Controllers\ImageController;
 })->middleware(['auth', 'verified'])->name('dashboard');
 */
 
-Route::get('/contact', function () {
-    return view('front.contact');
-});
+
+Route::get('/contact', [App\Http\Controllers\ContactFrontController::class,'create'])->name('contact.create')->middleware(['auth', 'admin']);
+
+Route::post('/contact', [App\Http\Controllers\ContactFrontController::class,'store'])->name('contact.store')->middleware(['auth', 'admin']);
 Route::get('admin', [App\Http\Controllers\AdminController::class, 'back'])
     ->middleware(['auth', 'verified'])
     ->name('admin');
@@ -54,6 +54,7 @@ Route::post('categories/{categorie}', [App\Http\Controllers\CategorieController:
 
 //Route::resource('categories', App\Http\Controllers\CategorieController::class);
 Route::get('/categories_create', [App\Http\Controllers\CategorieController::class, 'create'])->name('categories.create')->middleware(['auth', 'admin']);
+
 Route::post('/categories', [App\Http\Controllers\CategorieController::class, 'store'])->name('categories.store')->middleware(['verify_souscategorie','admin']);
 
 Route::get('/categories', [App\Http\Controllers\CategorieController::class, 'index'])->name('categories.index')->middleware(['auth', 'admin']);
@@ -63,21 +64,6 @@ Route::get('/categories/{categorie}/edit', [App\Http\Controllers\CategorieContro
 Route::put('/categories/{categorie}', [App\Http\Controllers\CategorieController::class, 'update'])->name('categories.update')->middleware(['verify_souscategorie','admin']);;
 
 Route::resource('sous_categories', App\Http\Controllers\SousCategorieController::class)->middleware(['auth', 'admin']);
-Route::get('/commandes', [App\Http\Controllers\CommandeController::class, 'index'])->name('commande.index');
-Route::get('commandes/{commande}', [App\Http\Controllers\CommandeController::class,'show'])->name('commande.show');
-Route::post('commandes/{commande}', [App\Http\Controllers\CommandeController::class,'destroy'])->name('commande.destroy');
-
-//Route::resource('categories', App\Http\Controllers\CategorieController::class);
-Route::get('/commande_create', [App\Http\Controllers\CommandeController::class, 'create'])->name('commande.create');
-Route::post('/commandes_store', [App\Http\Controllers\CommandeController::class, 'store'])->name('commande.store');
-
-
-Route::get('/commandes/{commande}/edit', [App\Http\Controllers\CommandeController::class, 'edit'])->name('commande.edit');
-Route::put('/commandes/{commande}', [App\Http\Controllers\CommandeController::class, 'update'])->name('commande.update');
-Route::get('/panier', [App\Http\Controllers\CommandeController::class, 'panier'])->name('commande.panier');
-Route::post('/commandes_storeticket', [App\Http\Controllers\CommandeController::class, 'storewithTicket'])->name('commande.storewithTicket');
+Route::resource('contacts', App\Http\Controllers\ContactController::class);
 
 require __DIR__.'/auth.php';
-Route::resource("/moyenTransport", MoyenController::class)->middleware(['auth', 'admin']);
-
-Route::resource("/imageMoyen", ImageController::class)->middleware(['auth', 'admin']);
