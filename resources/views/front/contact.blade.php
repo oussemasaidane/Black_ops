@@ -53,6 +53,7 @@
           
           @else
           <div>
+            
            <a href="/login" ><button class="btn btn-primary" type="submit">Connexion</button></a>
         </div>
         @endauth
