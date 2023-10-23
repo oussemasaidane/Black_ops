@@ -2,7 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\MoyenController;
+use App\Http\Controllers\ImageController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -77,3 +78,6 @@ Route::get('/panier', [App\Http\Controllers\CommandeController::class, 'panier']
 Route::post('/commandes_storeticket', [App\Http\Controllers\CommandeController::class, 'storewithTicket'])->name('commande.storewithTicket');
 
 require __DIR__.'/auth.php';
+Route::resource("/moyenTransport", MoyenController::class)->middleware(['auth', 'admin']);
+
+Route::resource("/imageMoyen", ImageController::class)->middleware(['auth', 'admin']);
