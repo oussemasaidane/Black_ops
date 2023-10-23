@@ -11,5 +11,9 @@ class Contact extends Model
 
     protected $table = 'Contact'; 
     protected $primaryKey = 'id'; 
-    protected $fillable = ['message','obj_message','date']; 
+    protected $fillable = ['message','obj_message','date','user_id']; 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

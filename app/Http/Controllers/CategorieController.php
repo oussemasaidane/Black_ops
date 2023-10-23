@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categorie;
-use App\Models\Contact;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
@@ -18,19 +17,19 @@ class CategorieController extends Controller
 
     public function create()
     {
-        return view('back.contacts.create');
+        return view('back.categories.create');
     }
 
     public function store(Request $request)
     {
-        $request->validate([
+      /*  $request->validate([
             'nom' => 'required',
-        ]);
+        ]);*/
 
-        Contact::create($request->all());
+        Categorie::create($request->all());
 
         return redirect()->route('categories.index')
-            ->with('success', 'Categorie created successfully.');
+            ->with('success', 'Categorie  mise à jour avec succès.');
     }
 
     public function edit(Categorie $categorie)
@@ -40,19 +39,16 @@ class CategorieController extends Controller
 
     public function update(Request $request, Categorie $categorie)
     {
-        $request->validate([
-            'nom' => 'required',
-        ]);
+       
 
         $categorie->update($request->all());
 
         return Redirect::route('categories.index')
-            ->with('success', 'Categorie updated successfully');
+            ->with('success', 'Categorie  mise à jour avec succès');
     }
 
     public function show(Categorie $categorie)
     {
-        var_dump($categorie['id']);
         return view('back.categories.show', compact('categorie'));
     }
 
@@ -60,7 +56,7 @@ class CategorieController extends Controller
     {
         $categorie->delete();
 
-        Session::flash('success', 'Categorie deleted successfully');
+        Session::flash('success', 'Categorie  mise à jour avec succès');
 
         return Redirect::route('categories.index');
     }

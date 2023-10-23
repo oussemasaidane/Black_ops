@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Contact;
-
-
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
@@ -30,8 +29,8 @@ class ContactController extends Controller
      */
     public function create()
     {
-        //
-        return view('back.contacts.create');
+        $users = User::all();
+        return view('back.contacts.create',compact('users'));
 
     }
 
@@ -47,7 +46,7 @@ class ContactController extends Controller
             'message' => 'required',
             'obj_message' => 'required',
             'date' => 'required',
-
+            'user_id' => 'required|exists:users,id',
         ]);
 
         Contact::create($request->all());

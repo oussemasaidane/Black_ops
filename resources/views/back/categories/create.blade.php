@@ -2,14 +2,22 @@
 
 @section('content')
     <div class="container">
-        <h2>Create New Categorie</h2>
-     <form action="{{ route('categories.store') }}" method="POST">
+        <h2 class="mt-5">Créer une nouvelle Categorie</h2>
+        @if(session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+        @endif
+        <a href="{{ route('categories.index') }}" class="mt-3 mb-5">Retour</a>
+        <br>
+        <br>
+        <br>
+        <form action="{{ route('categories.store') }}" method="POST">
             @csrf
             <div class="form-group">
                 <label for="nom">Nom:</label>
-                <input type="text" class="form-control" style=" 
-                border: 1px solid gray; width:50%" id="nom" name="nom" required>
-            </div>
+                <input type="text" class="form-control" style="border: none; border-bottom: 1px solid gray; width: 50%" id="nom" name="nom" >
+
             <button type="submit" class="btn btn-primary mt-5">Create</button>
         </form>
     </div>

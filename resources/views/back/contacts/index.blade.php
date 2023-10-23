@@ -11,6 +11,7 @@
                     <th>Message</th>
                     <th>Objet</th>
                     <th>Created at</th>
+                    <th>User name</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -21,6 +22,7 @@
                         <td>{{ $contact->message }}</td>
                         <td>{{ $contact->obj_message }}</td>
                         <td>{{ $contact->created_at }}</td>
+                        <td>{{ $contact->user->name }}</td>
 
                         <td>
                             <a href="{{ route('contacts.show', $contact->id) }}" class="btn btn-info">View</a>

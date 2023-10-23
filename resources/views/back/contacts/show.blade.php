@@ -22,6 +22,10 @@
                     <td>Date:</td>
                     <td>{{ $contact->date }}</td>
                 </tr>
+                <tr>
+                    <td>User name:</td>
+                    <td>{{ $contact->user->name }}</td>
+                </tr>
                 
             </tbody>
         </table>
