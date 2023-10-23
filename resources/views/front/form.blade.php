@@ -50,6 +50,8 @@
               <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="userDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   {{ Auth::user()->name }}
               </a>
+              <button id="storeTicketButton" data-id="1" data-nom="bus 274" data-prix="200">Store Ticket</button>
+           <a href="/panier" ><i class="fas fa-shopping-cart"></i></a>
               <div class="dropdown-menu" aria-labelledby="userDropdown">
                   <a class="dropdown-item" href="{{ route('profile.edit') }}">Profile</a>
                   <form method="POST" action="{{ route('logout') }}">
@@ -62,6 +64,8 @@
           @else
           <div>
            <a href="/login" ><button class="btn btn-primary" type="submit">Connexion</button></a>
+      
+
         </div>
         @endauth
 
@@ -263,6 +267,26 @@ box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); " >
 
 </div>
 
+<script>
+    document.getElementById('storeTicketButton').addEventListener('click', function() {
+        // Get the data attributes from the button
+        const id = this.getAttribute('data-id');
+        const nom = this.getAttribute('data-nom');
+        const prix = this.getAttribute('data-prix');
+
+        // Create an object with the ticket data
+        const ticket = { id, nom, prix };
+
+        // Convert the ticket object to a JSON string
+        const ticketJson = JSON.stringify(ticket);
+
+        // Store the JSON string in localStorage
+        localStorage.setItem('ticket', ticketJson);
+
+        // Provide a confirmation to the user
+        alert('Ticket est ajouter au panier!');
+    });
+</script>
 
 
 
