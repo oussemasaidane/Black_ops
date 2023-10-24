@@ -4,17 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Moyen; 
 
 class Image extends Model
 {
     use HasFactory;
     protected $table = 'images'; 
     protected $primaryKey = 'id'; 
-    protected $fillable = ['moyen_id','path'];
+    protected $fillable = ['url', 'id_ticket'];
 
-    public function moyen()
+    public function ticket()
     {
-        return $this->belongsTo(Moyen::class , 'moyen_id','id');
+        return $this->belongsTo(Ticket::class);
     }
+    
+
 }

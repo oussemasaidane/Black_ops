@@ -12,8 +12,11 @@ class Ticket extends Model
     protected $primaryKey = 'id'; 
     protected $fillable = ['nom', 'prix'];
 
-    public function commande()
+
+    public function images()
     {
-        return $this->belongsTo(Commande::class);
+        return $this->hasMany(Image::class, 'id_ticket');
     }
+    
 }
+

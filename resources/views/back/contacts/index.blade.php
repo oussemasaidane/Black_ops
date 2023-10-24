@@ -4,7 +4,8 @@
     <div class="container">
         <h2>Contacts : {{count($contacts)}}</h2>
         <a href="{{ route('contacts.create') }}" class="btn btn-success">Create New Contact</a>
-        <table class="table">
+      
+        <table class="table" >
             <thead>
                 <tr>
                     <th>ID</th>
@@ -37,5 +38,7 @@
                 @endforeach
             </tbody>
         </table>
+        <hr class="solid" style="border-top: 3px solid #bbb;">
+
     </div>
 @endsection

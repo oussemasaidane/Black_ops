@@ -1,6 +1,10 @@
 <?php
 
+
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ImageTController;
+
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -65,5 +69,21 @@ Route::put('/categories/{categorie}', [App\Http\Controllers\CategorieController:
 
 Route::resource('sous_categories', App\Http\Controllers\SousCategorieController::class)->middleware(['auth', 'admin']);
 Route::resource('contacts', App\Http\Controllers\ContactController::class);
+Route::resource('users', App\Http\Controllers\UserController::class);
+Route::get('/users/contact/{id}', [App\Http\Controllers\UserController::class, 'contacts'])->name('users.contacts')->middleware(['auth', 'admin']);
+
+
+
+Route::resource('tickets', App\Http\Controllers\TicketsController::class);
+
+
+
+Route::get('/images/create', [ImageTController::class, 'create'])->name('images.create');
+Route::post('/images', [ImageTController::class, 'store'])->name('images.store');
+Route::get('/images/{id}', [ImageTController::class, 'show'])->name('images.show');
+Route::get('/images/{id}/edit', [ImageTController::class, 'edit'])->name('images.edit');
+Route::put('/images/{id}', [ImageTController::class, 'update'])->name('images.update');
+Route::delete('/images/{id}', [ImageTController::class, 'destroy'])->name('images.destroy');
+Route::get('/images', [ImageTController::class, 'index'])->name('images.index');
 
 require __DIR__.'/auth.php';

@@ -86,21 +86,20 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-white " href="../pages/virtual-reality.html">
-                <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                    <i class="fas fa-images"></i>
-                </div>
-                <span class="nav-link-text ms-1"> Images</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-white " href="../pages/rtl.html">
-                <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                    <i class="fas fa-ticket-alt"></i>
-                </div>
-                <span class="nav-link-text ms-1">Tickets</span>
-            </a>
-        </li>
+    <a class="nav-link text-white {{ request()->routeIs('tickets.index') ? 'active bg-gradient-primary' : '' }}" href="{{ route('tickets.index') }}">
+        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+            <i class="material-icons opacity-10">table_view</i>
+        </div>
+        <span class="nav-link-text ms-1">Tickets</span>
+    </a>
+</li>
+<a class="nav-link text-white {{ request()->routeIs('tickets.index') ? 'active bg-gradient-primary' : '' }}" href="{{ route('images.index') }}">
+        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+            <i class="material-icons opacity-10">table_view</i>
+        </div>
+        <span class="nav-link-text ms-1">Images</span>
+    </a>
+</li>
         <li class="nav-item">
             <a class="nav-link text-white " href="../pages/notifications.html">
                 <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -133,7 +132,7 @@
 
 
         <li class="nav-item">
-            <a class="nav-link text-white " href="../pages/notifications.html">
+            <a class="nav-link text-white {{ request()->routeIs('users.index') ? 'active bg-gradient-primary' : '' }}" href="{{ route('users.index') }}">
                 <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                     <i class="fas fa-users"></i>
                 </div>
